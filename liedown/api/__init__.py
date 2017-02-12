@@ -1,0 +1,13 @@
+from ..app_factory import create_app as factory_create_app
+
+from .extensions import schemas
+
+
+def create_app(settings_override=None):
+    """Returns an api application instance"""
+
+    extensions = frozenset([schemas])
+
+    app = factory_create_app(__name__, __path__, settings_override, extensions)
+
+    return app

@@ -1,0 +1,19 @@
+Flask==0.12
+
+Jinja2==2.9.5  # via Flask
+MarkupSafe==0.23  # via Flask
+Werkzeug==0.11.15  # via Flask
+click==6.7 # via Flask
+itsdangerous==0.24  # via Flask
+
+
+Flask-Restful==0.3.5
+
+aniso8601==1.2.0  # via Flask-Restful
+python-dateutil==2.6.0  # via Flask-Restful
+pytz==2016.10  # via Flask-Restful
+
+
+Flask-Marshmallow==0.7.0
+
+marshmallow==2.12.2  # via Flask-Marshmallow
