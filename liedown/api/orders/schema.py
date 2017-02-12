@@ -9,7 +9,7 @@ class AddressSchema(schemas.Schema):
     street_2 = schemas.String()
     city = schemas.String()
     state = schemas.String()
-    zip_code = schemas.String()
+    zip_code = schemas.String(required=True)
     phone_number = schemas.String()
 
     birthdate = schemas.Date()
