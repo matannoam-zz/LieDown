@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_restful import Api, Resource
+from marshmallow import ValidationError
 
 from .schema import OrderSchema
 
@@ -18,10 +19,16 @@ class OrdersResource(Resource):
 
     def post(self):
         """ Create an order """
-        request_schema = OrderSchema()
-        order_data, request_errors = request_schema.load(request.json)
+        schema = OrderSchema()
+
+        order_data, request_errors = schema.load(request.json)
+        if request_errors:
+            return request_errors, 400
+
         order = Order(**order_data)
 
-        response_schema = OrderSchema()
-        response, response_errors = response_schema.dump(order)
+        response, response_errors = schema.dump(order)
+        if response_errors:
+            return {
+                'message': "Apologies, there's been an unexpected error."}, 500
         return response, 201
