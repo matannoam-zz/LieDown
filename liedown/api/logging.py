@@ -22,7 +22,7 @@ def setup_logging(app):
 
         log_data = {'url': request.url,
                     'response_code': response.status_code,
-                    'time': '%s.%s' % (time.seconds, time.microseconds),
+                    'time': time.seconds + time.microseconds / 10. ** 6,
                     'data': loads(response.data)}
 
         request_id = response.headers.get('Request-Id')
