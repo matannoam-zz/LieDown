@@ -5,6 +5,13 @@ from .exceptions import ApiException
 
 def setup_handlers(app):
 
+    @app.before_request
+    def check_authentication_token():
+        authentication_token = request.headers.get('Authentication-Token')
+        if authentication_token != 'SECRET':
+            return jsonify({'message':
+                'Authentication token misssing or incorrect.'}), 403
+
     @app.after_request
     def add_request_id_header(response):
         request_id = request.headers.get('Request-Id')
