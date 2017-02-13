@@ -26,6 +26,5 @@ class OrdersResource(Resource):
 
         response, response_errors = schema.dump(order)
         if response_errors:
-            return {
-                'message': "Apologies, there's been an unexpected error."}, 500
+            raise Exception(response_errors)
         return response, 201
