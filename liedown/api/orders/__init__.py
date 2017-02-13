@@ -1,9 +1,9 @@
 from flask import Blueprint, request
-from flask_restful import Resource
+from flask_restful import Api, Resource
 
-from ..base import Api
 from ..exceptions import ApiException
 from .schema import OrderSchema
+
 
 # named Blueprint object, so as to be registered by the app factory
 BLUEPRINT = Blueprint('orders', __name__, url_prefix='/orders')
@@ -26,7 +26,7 @@ class OrdersResource(Resource):
         if request_errors:
             raise ApiException(request_errors)
 
-        order = Order(**order_data)
+        order = Order(**(order_data or {}))
 
         response, response_errors = schema.dump(order)
         if response_errors:

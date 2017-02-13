@@ -1,9 +1,16 @@
-from flask import jsonify, current_app
+from flask import jsonify, current_app, request
 
 from .exceptions import ApiException
 
 
 def setup_handlers(app):
+
+    @app.after_request
+    def add_request_id_header(response):
+        request_id = request.headers.get('Request-Id')
+        if request_id:
+            response.headers.extend({'Request-Id': request_id})
+        return response
 
     @app.errorhandler(ApiException)
     def bad_request(e):
