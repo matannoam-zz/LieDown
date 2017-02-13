@@ -29,14 +29,14 @@ Use a tool like `curl`, [`httpie` (link)](https://httpie.org/), or [Postman](htt
 examples with httpie
 
 ```
-http post :5000/orders/ order_id="number 1"  /* returns 201 CREATED */
+http post :5000/orders/ order_id="number 1"  # returns 201 CREATED
 
-http post :5000/orders/ placed="not a date"  /* returns a 400 error */
+http post :5000/orders/ placed="not a date"  # returns a 400 error
 ```
 
 required field example
 ```
-http post :5000/orders/ shipping_address:='{"zip_code": "10016"}'  /* returns 201 CREATED */
+http post :5000/orders/ shipping_address:='{"zip_code": "10016"}'  # returns 201 CREATED
 
-http post :5000/orders/ shipping_address:='{"first_name": "Ann"}'  /* returns a 400 error */
+http post :5000/orders/ shipping_address:='{"first_name": "Ann"}'  # returns a 400 error
 ```
