@@ -26,7 +26,7 @@ class OrdersResource(Resource):
         if request_errors:
             raise ApiException(request_errors)
 
-        order = Order(**order_data)
+        order = Order(**(order_data or {}))
 
         response, response_errors = schema.dump(order)
         if response_errors:
