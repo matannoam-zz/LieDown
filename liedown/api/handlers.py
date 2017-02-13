@@ -9,11 +9,15 @@ def setup_handlers(app):
     def check_authentication_token():
         authentication_token = request.headers.get('Authentication-Token')
         if authentication_token != 'SECRET':
-            return jsonify({'message':
-                'Authentication token misssing or incorrect.'}), 403
+            return jsonify({
+                'message': 'Authentication token misssing or incorrect.'}), 403
 
     @app.after_request
     def add_request_id_header(response):
+        # don't include request id on forbidden
+        if response.status_code == 403:
+            return response
+
         request_id = request.headers.get('Request-Id')
         if request_id:
             response.headers.extend({'Request-Id': request_id})
