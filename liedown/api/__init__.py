@@ -1,6 +1,7 @@
 from ..app_factory import create_app as factory_create_app
 
 from .extensions import schemas
+from .handlers import setup_handlers
 
 
 def create_app(settings_override=None):
@@ -9,5 +10,7 @@ def create_app(settings_override=None):
     extensions = frozenset([schemas])
 
     app = factory_create_app(__name__, __path__, settings_override, extensions)
+
+    setup_handlers(app)
 
     return app
