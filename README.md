@@ -16,8 +16,8 @@ Note on rogue fields - extra information notincluded in the schema on requests a
 To run the application in development
 
 ```
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
+pip install -r requirements.txt -r requirements-dev.txt
+
 ln -s ../../scripts/pre-commit .git/hooks/pre-commit
 
 
