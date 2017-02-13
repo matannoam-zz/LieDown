@@ -1,8 +1,8 @@
-from flask import Blueprint, request, make_response
+from flask import Blueprint, request
 from flask_restful import Resource
-from marshmallow import ValidationError
 
 from ..base import Api
+from ..exceptions import ApiException
 from .schema import OrderSchema
 
 # named Blueprint object, so as to be registered by the app factory
@@ -24,7 +24,7 @@ class OrdersResource(Resource):
 
         order_data, request_errors = schema.load(request.json)
         if request_errors:
-            return request_errors, 400
+            raise ApiException(request_errors)
 
         order = Order(**order_data)
 
