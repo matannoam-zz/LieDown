@@ -40,3 +40,9 @@ http post :5000/orders/ shipping_address:='{"zip_code": "10016"}'  # returns 201
 
 http post :5000/orders/ shipping_address:='{"first_name": "Ann"}'  # returns a 400 error
 ```
+
+All requests can be processed with an ID. A UUID is recommend.
+```
+http post :5000/orders/ order_id="number 1" Request-Id:ABC-123  # returns 201 CREATED with addditional header
+http post :5000/orders/ placed="not a date" Request-Id:ABC-123  # returns a 400 error with addditional header
+```

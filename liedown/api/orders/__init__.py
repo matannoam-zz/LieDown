@@ -1,7 +1,8 @@
-from flask import Blueprint, request
-from flask_restful import Api, Resource
+from flask import Blueprint, request, make_response
+from flask_restful import Resource
 from marshmallow import ValidationError
 
+from ..base import Api
 from .schema import OrderSchema
 
 # named Blueprint object, so as to be registered by the app factory
